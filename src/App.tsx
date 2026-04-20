@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import { pmpQuestions } from './data/questions';
 import { uiTranslations } from './data/translations';
 import { Question, QuizState } from './types';
@@ -13,7 +15,11 @@ import {
   Info,
   Trophy,
   ArrowRight,
-  Globe
+  Globe,
+  Download,
+  Mail,
+  User,
+  ShieldCheck
 } from 'lucide-react';
 
 export default function App() {
@@ -23,21 +29,22 @@ export default function App() {
     isFinished: false,
     score: 0,
     language: 'pl',
+    leadCaptured: false,
+    userData: { name: '', email: '' }
   });
 
   const [hasStarted, setHasStarted] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [isCapturingLead, setIsCapturingLead] = useState(false);
 
   const t = uiTranslations[state.language];
   const currentQuestion = pmpQuestions[state.currentQuestionIndex];
-  const qContent = currentQuestion.translations[state.language];
+  const qContent = currentQuestion?.translations[state.language];
   const progress = ((state.answers.filter(a => a !== null).length) / pmpQuestions.length) * 100;
 
-  const toggleLanguage = () => {
-    setState(prev => ({
-      ...prev,
-      language: prev.language === 'pl' ? 'en' : 'pl'
-    }));
+  const startQuiz = () => {
+    setHasStarted(true);
+    setState(prev => ({ ...prev, startTime: Date.now() }));
   };
 
   const handleAnswer = (optionIndex: number) => {
@@ -65,23 +72,96 @@ export default function App() {
       });
       setShowExplanation(false);
     } else {
-      setState({
-        ...state,
-        isFinished: true,
-      });
+      setState(prev => ({ ...prev, endTime: Date.now() }));
+      setIsCapturingLead(true);
     }
+  };
+
+  const skipLead = () => {
+    setIsCapturingLead(false);
+    setState(prev => ({ ...prev, isFinished: true }));
+  };
+
+  const handleLeadSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setIsCapturingLead(false);
+    setState(prev => ({ ...prev, isFinished: true, leadCaptured: true }));
+  };
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    
+    // Add content to PDF
+    doc.setFontSize(22);
+    doc.text(t.performanceReport, 105, 20, { align: 'center' });
+    
+    doc.setFontSize(14);
+    doc.text(`${t.nameLabel}: ${state.userData?.name || 'User'}`, 20, 40);
+    doc.text(`${t.emailLabel}: ${state.userData?.email || 'N/A'}`, 20, 50);
+    doc.text(`${t.correctLabel}: ${state.score} / ${pmpQuestions.length}`, 20, 60);
+
+    // Time Tracking
+    if (state.startTime && state.endTime) {
+      const startStr = new Date(state.startTime).toLocaleTimeString();
+      const endStr = new Date(state.endTime).toLocaleTimeString();
+      const durationMs = state.endTime - state.startTime;
+      const minutes = Math.floor(durationMs / 60000);
+      const seconds = Math.floor((durationMs % 60000) / 1000);
+      const durationStr = `${minutes}m ${seconds}s`;
+
+      doc.setFontSize(11);
+      doc.text(`${t.startTimeLabel}: ${startStr}`, 140, 40);
+      doc.text(`${t.endTimeLabel}: ${endStr}`, 140, 50);
+      doc.text(`${t.durationLabel}: ${durationStr}`, 140, 60);
+    }
+
+    doc.setFontSize(16);
+    doc.text(t.domainAnalysis, 20, 80);
+
+    // Grouping by category
+    const categories: Record<string, { total: number; correct: number }> = {};
+    pmpQuestions.forEach((q, i) => {
+      const cat = q.translations[state.language].category;
+      if (!categories[cat]) categories[cat] = { total: 0, correct: 0 };
+      categories[cat].total++;
+      if (state.answers[i] === q.correctAnswer) categories[cat].correct++;
+    });
+
+    const tableBody = Object.entries(categories).map(([name, stats]) => [
+      name,
+      `${Math.round((stats.correct / stats.total) * 100)}%`,
+      `${stats.correct} / ${stats.total}`
+    ]);
+
+    autoTable(doc, {
+      startY: 90,
+      head: [['Category', 'Score', 'Details']],
+      body: tableBody,
+    });
+
+    const finalY = (doc as any).lastAutoTable?.finalY || 150;
+    
+    doc.setFontSize(12);
+    doc.setTextColor(100);
+    const splitText = doc.splitTextToSize(t.coachInstruction, 170);
+    doc.text(splitText, 20, finalY + 20);
+
+    doc.save(`PMP_Result_${state.userData?.name || 'App'}.pdf`);
   };
 
   const restartQuiz = () => {
     setState({
-      ...state,
       currentQuestionIndex: 0,
       answers: Array(pmpQuestions.length).fill(null),
       isFinished: false,
       score: 0,
+      language: state.language,
+      leadCaptured: false,
+      userData: { name: '', email: '' }
     });
     setHasStarted(false);
     setShowExplanation(false);
+    setIsCapturingLead(false);
   };
 
   const getScoreColor = () => {
@@ -136,9 +216,19 @@ export default function App() {
             </div>
 
             <div className="flex flex-col gap-3">
+              {state.leadCaptured && (
+                <button 
+                  onClick={generatePDF}
+                  className="w-full bg-white text-indigo-900 py-5 px-6 rounded-2xl font-bold hover:bg-indigo-50 transition-all flex items-center justify-center gap-3 shadow-2xl border-4 border-indigo-500/20 mb-4 group"
+                >
+                  <Download className="w-6 h-6 group-hover:bounce" />
+                  {t.downloadBtn}
+                </button>
+              )}
+              
               <button 
                 onClick={restartQuiz}
-                className="w-full bg-indigo-600 text-white py-4 px-6 rounded-2xl font-bold hover:bg-indigo-500 transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30"
+                className="w-full border-2 border-white/20 text-white py-4 px-6 rounded-2xl font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-5 h-5" />
                 {t.retryBtn}
@@ -149,12 +239,77 @@ export default function App() {
             </div>
           </motion.div>
         </div>
+      ) : isCapturingLead ? (
+        <div className="min-h-screen flex items-center justify-center p-6 text-white overflow-y-auto">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="max-w-md w-full glass p-8 md:p-10 border-white/10 shadow-2xl"
+          >
+            <div className="mb-8 text-center">
+              <div className="inline-flex p-4 glass bg-indigo-500/20 border-indigo-400/30 mb-4 rounded-3xl">
+                <ShieldCheck className="w-10 h-10 text-indigo-400" />
+              </div>
+              <h2 className="text-3xl font-black tracking-tight mb-2">{t.leadTitle}</h2>
+              <p className="text-indigo-200/60 font-medium">{t.leadSubtitle}</p>
+            </div>
+
+            <form onSubmit={handleLeadSubmit} className="space-y-5">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2 px-1">{t.nameLabel}</label>
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-300/50" />
+                  <input 
+                    required
+                    type="text"
+                    value={state.userData?.name}
+                    onChange={(e) => setState(prev => ({ ...prev, userData: { ...prev.userData!, name: e.target.value } }))}
+                    className="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-4 pl-12 pr-4 focus:border-indigo-500 focus:bg-white/10 transition-all outline-none font-medium"
+                    placeholder="John Doe"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2 px-1">{t.emailLabel}</label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-300/50" />
+                  <input 
+                    required
+                    type="email"
+                    value={state.userData?.email}
+                    onChange={(e) => setState(prev => ({ ...prev, userData: { ...prev.userData!, email: e.target.value } }))}
+                    className="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-4 pl-12 pr-4 focus:border-indigo-500 focus:bg-white/10 transition-all outline-none font-medium"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-4 space-y-3">
+                <button 
+                  type="submit"
+                  className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-500 transition-all shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2"
+                >
+                  <Download className="w-5 h-5" />
+                  {t.downloadBtn}
+                </button>
+                <button 
+                  type="button"
+                  onClick={skipLead}
+                  className="w-full text-indigo-200/50 hover:text-white transition-colors py-2 text-sm font-bold"
+                >
+                  {t.skipBtn}
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        </div>
       ) : !hasStarted ? (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 text-white">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 text-white text-center">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="max-w-xl w-full text-center"
+            className="max-w-xl w-full"
           >
             <div className="mb-6 inline-flex p-4 glass bg-white/5 border-white/10 shadow-xl">
               <BookOpen className="w-10 h-10 text-indigo-400" />
@@ -174,7 +329,7 @@ export default function App() {
             </div>
 
             <button 
-              onClick={() => setHasStarted(true)}
+              onClick={startQuiz}
               className="group w-full bg-indigo-600 text-white py-5 px-8 rounded-3xl font-bold text-lg hover:bg-indigo-500 transition-all shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2"
             >
               {t.startBtn}
@@ -192,7 +347,7 @@ export default function App() {
                   <span className="text-white font-bold text-xl">P</span>
                 </div>
                 <div>
-                  <h2 className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-0.5">{qContent.category}</h2>
+                  <h2 className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-0.5">{qContent?.category}</h2>
                   <div className="text-xl font-bold tracking-tight">
                     {t.questionOf.replace('{current}', (state.currentQuestionIndex + 1).toString()).replace('{total}', pmpQuestions.length.toString())}
                   </div>
@@ -232,11 +387,11 @@ export default function App() {
                 </div>
                 
                 <h3 className="text-xl md:text-2xl font-bold leading-relaxed mb-10 text-white relative z-10">
-                  {qContent.question}
+                  {qContent?.question}
                 </h3>
 
                 <div className="grid grid-cols-1 gap-4">
-                  {qContent.options.map((option, idx) => {
+                  {qContent?.options.map((option, idx) => {
                     const isSelected = state.answers[state.currentQuestionIndex] === idx;
                     const isCorrect = idx === currentQuestion.correctAnswer;
                     const showResult = state.answers[state.currentQuestionIndex] !== null;
@@ -289,7 +444,7 @@ export default function App() {
                       <div>
                         <h4 className="font-bold text-indigo-300 mb-2">{t.explanation}</h4>
                         <p className="text-white/80 leading-relaxed font-medium">
-                          {qContent.explanation}
+                          {qContent?.explanation}
                         </p>
                       </div>
                     </div>
@@ -315,5 +470,3 @@ export default function App() {
     </div>
   );
 }
-
-

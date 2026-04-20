@@ -485,6 +485,365 @@ export const pmpQuestions: Question[] = [
         explanation: "El Product Owner es el único responsable de gestionar el Product Backlog."
       }
     }
+  },
+  {
+    id: "pmp-11",
+    correctAnswer: 0,
+    translations: {
+      pl: {
+        category: "Ludzie",
+        question: "Interesariusz jest wrogo nastawiony do projektu. Co powinien zrobić kierownik projektu?",
+        options: ["Zrozumieć powody oporu", "Zignorować go", "Poinformować sponsora", "Usunąć go z listy"],
+        explanation: "Zrozumienie przyczyn oporu pozwala na opracowanie strategii angażowania interesariusza."
+      },
+      en: {
+        category: "People",
+        question: "A stakeholder is resistant to the project. What should the project manager do?",
+        options: ["Understand the root cause of resistance", "Ignore them", "Inform the sponsor", "Remove them from the list"],
+        explanation: "Understanding resistance helps in developing tailored engagement strategies."
+      },
+      ar: {
+        category: "الأشخاص",
+        question: "أحد أعضاء الفريق مثقل بالعمل باستمرار. ماذا يجب أن يفعل القائد؟",
+        options: ["فهم السبب الجذري للمقاومة", "تجاهله", "إبلاغ الراعي", "حذفه من القائمة"],
+        explanation: "يساعد فهم المقاومة في تطوير استراتيجيات مشاركة مخصصة."
+      },
+      de: {
+        category: "Menschen",
+        question: "Ein Stakeholder leistet Widerstand gegen das Projekt. Was sollte der Projektmanager tun?",
+        options: ["Die Kernursache des Widerstands verstehen", "Ihn ignorieren", "Den Sponsor informieren", "Ihn von der Liste entfernen"],
+        explanation: "Das Verständnis von Widerstand hilft bei der Entwicklung maßgeschneiderter Engagement-Strategien."
+      },
+      es: {
+        category: "Personas",
+        question: "Un interesado se resiste al proyecto. ¿Qué debe hacer el director del proyecto?",
+        options: ["Comprender la causa raíz de la resistencia", "Ignorarlos", "Informar al patrocinador", "Eliminarlos de la lista"],
+        explanation: "Comprender la resistencia ayuda a desarrollar estrategias de participación personalizadas."
+      }
+    }
+  },
+  {
+    id: "pmp-12",
+    correctAnswer: 2,
+    translations: {
+      pl: {
+        category: "Proces",
+        question: "Projektant kończy pracę, ale nie podpisał dokumentacji. Co należy zrobić?",
+        options: ["Zatrzymać płatność", "Poprosić o podpis później", "Zapewnić formalną akceptację", "Zignorować to"],
+        explanation: "Formalna akceptacja jest kluczowa dla zamknięcia etapu lub projektu."
+      },
+      en: {
+        category: "Process",
+        question: "A designer finishes the work but hasn't signed off. What should be done?",
+        options: ["Withhold payment", "Ask for signature later", "Ensure formal acceptance and sign-off", "Ignore it"],
+        explanation: "Formal acceptance is essential for closing a phase or the project."
+      },
+      ar: {
+        category: "العملية",
+        question: "أنهى المصمم العمل ولكنه لم يوقع عليه. ماذا ينبغي أن يفعل؟",
+        options: ["حجب الدفع", "طلب التوقيع لاحقاً", "ضمان القبول الرسمي والتوقيع", "تجاهل الأمر"],
+        explanation: "القبول الرسمي ضروري لإغلاق المرحلة أو المشروع."
+      },
+      de: {
+        category: "Prozess",
+        question: "Ein Designer schließt die Arbeit ab, hat aber noch nicht unterschrieben. Was sollte getan werden?",
+        options: ["Zahlung zurückhalten", "Später um Unterschrift bitten", "Formale Abnahme und Freigabe sicherstellen", "Ignorieren"],
+        explanation: "Die formale Abnahme ist für den Abschluss einer Phase oder des Projekts unerlässlich."
+      },
+      es: {
+        category: "Proceso",
+        question: "Un diseñador termina el trabajo pero no ha firmado la aprobación. ¿Qué se debe hacer?",
+        options: ["Retener el pago", "Pedir la firma más tarde", "Asegurar la aceptación formal y la firma", "Ignorarlo"],
+        explanation: "La aceptación formal es esencial para cerrar una fase o el proyecto."
+      }
+    }
+  },
+  {
+    id: "pmp-13",
+    correctAnswer: 1,
+    translations: {
+      pl: {
+        category: "Środowisko Biznesowe",
+        question: "Zmieniają się przepisy prawne wpływające na projekt. Co zrobić najpierw?",
+        options: ["Zatrzymać projekt", "Zaktualizować rejestr ryzyk", "Zignorować to", "Zmienić zespół"],
+        explanation: "Zmiany legislacyjne to ryzyko zewnętrzne, które musi być natychmiast odnotowane."
+      },
+      en: {
+        category: "Business Environment",
+        question: "Legal regulations affecting the project change. What to do first?",
+        options: ["Stop the project", "Update the risk register", "Ignore it", "Change the team"],
+        explanation: "Legislative changes are external risks that must be recorded immediately."
+      },
+      ar: {
+        category: "بيئة العمل",
+        question: "تغيرت اللوائح القانونية التي تؤثر على المشروع. ما العمل أولاً؟",
+        options: ["إيقاف المشروع", "تحديث سجل المخاطر", "تجاهل الأمر", "تغيير الفريق"],
+        explanation: "التغييرات التشريعية هي مخاطر خارجية يجب تسجيلها على الفور."
+      },
+      de: {
+        category: "Geschäftsumfeld",
+        question: "Rechtliche Vorschriften, die das Projekt beeinflussen, ändern sich. Was ist zuerst zu tun?",
+        options: ["Das Projekt stoppen", "Das Risikoregister aktualisieren", "Ignorieren", "Das Team wechseln"],
+        explanation: "Gesetzesänderungen sind externe Risiken, die sofort erfasst werden müssen."
+      },
+      es: {
+        category: "Entorno Empresarial",
+        question: "Cambian las regulaciones legales que afectan al proyecto. ¿Qué hacer primero?",
+        options: ["Detener el proyecto", "Actualizar el registro de riesgos", "Ignorarlo", "Cambiar el equipo"],
+        explanation: "Los cambios legislativos son riesgos externos que deben registrarse inmediatamente."
+      }
+    }
+  },
+  {
+    id: "pmp-14",
+    correctAnswer: 3,
+    translations: {
+      pl: {
+        category: "Ludzie",
+        question: "Członek zespołu jest stale przeciążony pracą. Co powinien zrobić lider?",
+        options: ["Kazać mu pracować ciężej", "Zatrudnić nową osobę", "Zignorować to", "Przeanalizować obciążenie i wyrównać zasoby"],
+        explanation: "Wyrównywanie zasobów zapobiega wypaleniu i optymalizuje pracę zespołu."
+      },
+      en: {
+        category: "People",
+        question: "A team member is constantly overloaded. What should the leader do?",
+        options: ["Tell them to work harder", "Hire someone new", "Ignore it", "Analyze workload and perform resource leveling"],
+        explanation: "Resource leveling prevents burnout and optimizes team performance."
+      },
+      ar: {
+        category: "الأشخاص",
+        question: "أحد أعضاء الفريق مثقل بالعمل باستمرار. ماذا يجب أن يفعل القائد؟",
+        options: ["أخبره أن يعمل بجدية أكبر", "توظيف شخص جديد", "تجاهل الأمر", "تحليل عبء العمل وإجراء تسوية للموارد"],
+        explanation: "تسوية الموارد تمنع الاحتراق الوظيفي وتحسن أداء الفريق."
+      },
+      de: {
+        category: "Menschen",
+        question: "Ein Teammitglied ist ständig überlastet. Was sollte die Führungskraft tun?",
+        options: ["Ihnen sagen, sie sollen härter arbeiten", "Jemanden neu einstellen", "Ignorieren", "Arbeitsbelastung analysieren und Ressourcen abgleichen"],
+        explanation: "Ressourcenabgleich verhindert Burnout und optimiert die Teamleistung."
+      },
+      es: {
+        category: "Personas",
+        question: "Un miembro del equipo está constantemente sobrecargado. ¿Qué debe hacer el líder?",
+        options: ["Decirles que trabajen más duro", "Contratar a alguien nuevo", "Ignorarlo", "Analizar la carga de trabajo y realizar la nivelación de recursos"],
+        explanation: "La nivelación de recursos previene el agotamiento y optimiza el desempeño del equipo."
+      }
+    }
+  },
+  {
+    id: "pmp-15",
+    correctAnswer: 0,
+    translations: {
+      pl: {
+        category: "Proces",
+        question: "Podczas Planning Poker zespół ma dużą rozbieżność w szacunkach. Co robi Scrum Master?",
+        options: ["Zachęca do dyskusji najbardziej skrajne osoby", "Wybiera średnią", "Sam decyduje", "Zignoruje to"],
+        explanation: "Dyskusja pozwala zrozumieć różne perspektywy i osiągnąć konsensus."
+      },
+      en: {
+        category: "Process",
+        question: "During Planning Poker, there's a large divergence in estimates. What does the Scrum Master do?",
+        options: ["Encourages discussion between outliers", "Sets the average", "Decides themselves", "Ignores it"],
+        explanation: "Discussion helps understand different perspectives and leads to consensus."
+      },
+      ar: {
+        category: "العملية",
+        question: "أثناء لعبة Planning Poker، كان هناك اختلاف كبير في التقديرات. ماذا يفعل سكروم ماستر؟",
+        options: ["يشجع النقاش بين القيم المتطرفة", "يحدد المتوسط", "يقرر بنفسه", "يتجاهل الأمر"],
+        explanation: "يساعد النقاش في فهم وجهات النظر المختلفة ويؤدي إلى الإجماع."
+      },
+      de: {
+        category: "Prozess",
+        question: "Beim Planning Poker gibt es große Abweichungen bei den Schätzungen. Was tut der Scrum Master?",
+        options: ["Ermutigt zur Diskussion zwischen den Ausreißern", "Legt den Durchschnitt fest", "Entscheidet selbst", "Ignoriert es"],
+        explanation: "Diskussionen helfen, verschiedene Perspektiven zu verstehen und führen zu einem Konsens."
+      },
+      es: {
+        category: "Proceso",
+        question: "Durante el Planning Poker, hay una gran divergencia en las estimaciones. ¿Qué hace el Scrum Master?",
+        options: ["Fomentar la discusión entre los valores atípicos", "Establecer el promedio", "Decidir ellos mismos", "Ignorarlo"],
+        explanation: "La discusión ayuda a comprender diferentes perspectivas y conduce al consenso."
+      }
+    }
+  },
+  {
+    id: "pmp-16",
+    correctAnswer: 2,
+    translations: {
+      pl: {
+        category: "Środowisko Biznesowe",
+        question: "Wykryto, że projekt nie dostarcza zakładanej wartości biznesowej. Co zrobić?",
+        options: ["Kontynuować", "Zwiększyć budżet", "Zrobić przegląd z Product Ownerem", "Zakończyć projekt od razu"],
+        explanation: "Przegląd pozwala na walidację wartości i ewentualną zmianę kursu (pivot)."
+      },
+      en: {
+        category: "Business Environment",
+        question: "The project is found to not be delivering expected business value. What to do?",
+        options: ["Continue anyway", "Increase the budget", "Perform a review with the Product Owner", "Terminate immediately"],
+        explanation: "A review allows for value validation and a potential pivot."
+      },
+      ar: {
+        category: "بيئة العمل",
+        question: "تبين أن المشروع لا يقدم القيمة التجارية المتوقعة. ما العمل؟",
+        options: ["الاستمرار على أي حال", "زيادة الميزانية", "إجراء مراجعة مع مالك المنتج", "إنهاء المشروع فوراً"],
+        explanation: "تسمح المراجعة بالتحقق من القيمة والتحول المحتمل."
+      },
+      de: {
+        category: "Geschäftsumfeld",
+        question: "Es stellt sich heraus, dass das Projekt nicht den erwarteten Geschäftswert liefert. Was ist zu tun?",
+        options: ["Trotzdem weitermachen", "Das Budget erhöhen", "Eine Überprüfung mit dem Product Owner durchführen", "Sofort abbrechen"],
+        explanation: "Eine Überprüfung ermöglicht die Wertvalidierung und einen potenziellen Pivot."
+      },
+      es: {
+        category: "Entorno Empresarial",
+        question: "Se descubre que el proyecto no está entregando el valor comercial esperado. ¿Qué hacer?",
+        options: ["Continuar de todos modos", "Aumentar el presupuesto", "Realizar una revisión con el Product Owner", "Terminar inmediatamente"],
+        explanation: "Una revisión permite la validación del valor y un posible giro."
+      }
+    }
+  },
+  {
+    id: "pmp-17",
+    correctAnswer: 1,
+    translations: {
+      pl: {
+        category: "Ludzie",
+        question: "Dwa kluczowe zespoły mają konflikt o priorytety. Co robi kierownik projektu?",
+        options: ["Sam narzuca priorytety", "Facylituje spotkanie liderów zespołów", "Czeka aż sami rozwiążą", "Zgłasza to do zarządu"],
+        explanation: "Facylitacja pozwala na wypracowanie wspólnego rozwiązania i zadowolenie obu stron."
+      },
+      en: {
+        category: "People",
+        question: "Two key teams have a conflict over priorities. What does the project manager do?",
+        options: ["Imposes priorities themselves", "Facilitates a meeting between team leaders", "Waits for them to solve it", "Reports to senior management"],
+        explanation: "Facilitation helps in working out a mutual solution that satisfies both parties."
+      },
+      ar: {
+        category: "الأشخاص",
+        question: "هناك صراع بين فريقين رئيسيين حول الأولويات. ماذا يفعل مدير المشروع؟",
+        options: ["يفرض الأولويات بنفسه", "يسهل عقد اجتماع بين قادة الفريق", "ينتظرهم لحلها", "يرفع تقريراً إلى الإدارة العليا"],
+        explanation: "تساعد التسهيلات في التوصل إلى حل متبادل يرضي الطرفين."
+      },
+      de: {
+        category: "Menschen",
+        question: "Zwei wichtige Teams haben einen Konflikt über Prioritäten. Was tut der Projektmanager?",
+        options: ["Setzt selbst Prioritäten", "Moderiert ein Treffen zwischen den Teamleitern", "Wartet, bis sie es selbst lösen", "Berichtet an das obere Management"],
+        explanation: "Moderation hilft dabei, eine gemeinsame Lösung zu erarbeiten, die beide Parteien zufriedenstellt."
+      },
+      es: {
+        category: "Personas",
+        question: "Dos equipos clave tienen un conflicto sobre las prioridades. ¿Qué hace el director del proyecto?",
+        options: ["Imponer las prioridades ellos mismos", "Facilitar una reunión entre los líderes de equipo", "Esperar a que ellos lo resuelvan", "Informar a la alta dirección"],
+        explanation: "La facilitación ayuda a elaborar una solución mutua que satisfaga a ambas partes."
+      }
+    }
+  },
+  {
+    id: "pmp-18",
+    correctAnswer: 0,
+    translations: {
+      pl: {
+        category: "Proces",
+        question: "Projekt wykazuje opóźnienie, ale jakość jest zbyt niska. Co zrobić?",
+        options: ["Przeprowadzić analizę przyczyn", "Zwiększyć tempo pracy", "Zatrudnić juniorów", "Zignorować opóźnienie"],
+        explanation: "Zwiększenie tempa przy niskiej jakości tylko pogorszy sytuację. Najpierw analiza."
+      },
+      en: {
+        category: "Process",
+        question: "The project shows delay, but quality is too low. What to do?",
+        options: ["Perform a root cause analysis", "Increase work pace", "Hire juniors", "Ignore the delay"],
+        explanation: "Increasing pace with low quality will only worsen the situation. Perform analysis first."
+      },
+      ar: {
+        category: "العملية",
+        question: "يظهر المشروع تأخراً، لكن الجودة منخفضة جداً. ما العمل؟",
+        options: ["إجراء تحليل للسبب الجذري", "زيادة وتيرة العمل", "توظيف مبتدئين", "تجاهل التأخير"],
+        explanation: "زيادة الوتيرة مع الجودة المنخفضة لن تؤدي إلا إلى تفاقم الوضع. قم بإجراء التحليل أولاً."
+      },
+      de: {
+        category: "Prozess",
+        question: "Das Projekt zeigt eine Verzögerung, aber die Qualität ist zu niedrig. Was ist zu tun?",
+        options: ["Eine Ursachenanalyse durchführen", "Arbeitstempo erhöhen", "Junioren einstellen", "Verzögerung ignorieren"],
+        explanation: "Das Erhöhen des Tempos bei niedriger Qualität wird die Situation nur verschlimmern. Zuerst analysieren."
+      },
+      es: {
+        category: "Proceso",
+        question: "El proyecto muestra retraso, pero la calidad es demasiado baja. ¿Qué hacer?",
+        options: ["Realizar un análisis de causa raíz", "Aumentar el ritmo de trabajo", "Contratar juniors", "Ignorar el retraso"],
+        explanation: "Aumentar el ritmo con baja calidad solo empeorará la situación. Realice primero el análisis."
+      }
+    }
+  },
+  {
+    id: "pmp-19",
+    correctAnswer: 3,
+    translations: {
+      pl: {
+        category: "Środowisko Biznesowe",
+        question: "Wybuchła wojna handlowa wpływająca na łańcuch dostaw. Co robi PM?",
+        options: ["Zamyka projekt", "Płacze", "Nic nie robi", "Ocenia wpływ na cele projektu i aktualizuje rejestr ryzyk"],
+        explanation: "Wydarzenia makroekonomiczne wymagają oceny wpływu i zarządzania ryzykiem."
+      },
+      en: {
+        category: "Business Environment",
+        question: "A trade war breaks out affecting the supply chain. What does the PM do?",
+        options: ["Close the project", "Cry", "Do nothing", "Assess impact on project goals and update risk register"],
+        explanation: "Macro-environmental events require impact assessment and risk management."
+      },
+      ar: {
+        category: "بيئة العمل",
+        question: "اندلعت حرب تجارية تؤثر على سلاسل الإمداد. ماذا يفعل مدير المشروع؟",
+        options: ["إغلاق المشروع", "البكاء", "لا يفعل شيئاً", "تقييم التأثير على أهداف المشروع وتحديث سجل المخاطر"],
+        explanation: "تتطلب الأحداث البيئية الكلية تقييم التأثير وإدارة المخاطر."
+      },
+      de: {
+        category: "Geschäftsumfeld",
+        question: "Ein Handelskrieg bricht aus und beeinträchtigt die Lieferkette. Was tut der PM?",
+        options: ["Das Projekt beenden", "Weinen", "Nichts tun", "Auswirkungen auf Projektziele bewerten und Risikoregister aktualisieren"],
+        explanation: "Makroökonomische Ereignisse erfordern eine Folgenabschätzung und Risikomanagement."
+      },
+      es: {
+        category: "Entorno Empresarial",
+        question: "Se desata una guerra comercial que afecta a la cadena de suministro. ¿Qué hace el PM?",
+        options: ["Cerrar el proyecto", "Llorar", "No hacer nada", "Evaluar el impacto en los objetivos del proyecto y actualizar el registro de riesgos"],
+        explanation: "Los eventos macroambientales requieren evaluación de impacto y gestión de riesgos."
+      }
+    }
+  },
+  {
+    id: "pmp-20",
+    correctAnswer: 1,
+    translations: {
+      pl: {
+        category: "Ludzie",
+        question: "Zespół sformułował zestaw zasad współpracy (Team Charter). Członek zespołu łamie te zasady. Co robisz?",
+        options: ["Zwalniasz go", "Rozmawiasz z nim w cztery oczy", "Publicznie go upominasz", "Ignorujesz to"],
+        explanation: "Prywatna rozmowa pozwala wyjaśnić przyczyny zachowania i przypomnieć o zobowiązaniach."
+      },
+      en: {
+        category: "People",
+        question: "The team formulated a Team Charter. A member is breaking the rules. What do you do?",
+        options: ["Fire them", "Talk to them privately", "Reprimand them publicly", "Ignore it"],
+        explanation: "A private conversation clarifies the reasons and reminds them of their commitments."
+      },
+      ar: {
+        category: "الأشخاص",
+        question: "صاغ الفريق ميثاق الفريق (Team Charter). أحد الأعضاء يخالف القواعد. ماذا تفعل؟",
+        options: ["طرده من العمل", "التحدث معه على انفراد", "توبيخه علناً", "تجاهل الأمر"],
+        explanation: "تسمح المحادثة الخاصة بتوضيح أسباب السلوك وتذكيرهم بالتزاماتهم."
+      },
+      de: {
+        category: "Menschen",
+        question: "Das Team hat eine Team-Charta erstellt. Ein Mitglied verstößt gegen die Regeln. Was tun Sie?",
+        options: ["Ihn entlassen", "Privat mit ihm sprechen", "Ihn öffentlich rügen", "Ignorieren"],
+        explanation: "Ein privates Gespräch klärt die Gründe und erinnert an die Verpflichtungen."
+      },
+      es: {
+        category: "Personas",
+        question: "El equipo formuló un Acta de Equipo (Team Charter). Un miembro está rompiendo las reglas. ¿Qué haces?",
+        options: ["Despedirlos", "Hablar con ellos en privado", "Reprenderlos públicamente", "Ignorarlo"],
+        explanation: "Una conversación privada aclara los motivos y les recuerda sus compromisos."
+      }
+    }
   }
-  // Simplified to 10 for brevity in the sample, but keeping the structure ready
 ];

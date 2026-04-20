@@ -19,9 +19,17 @@ export interface QuizState {
   isFinished: boolean;
   score: number;
   language: 'pl' | 'en' | 'ar' | 'de' | 'es';
+  leadCaptured: boolean;
+  userData?: {
+    name: string;
+    email: string;
+  };
+  startTime?: number;
+  endTime?: number;
 }
 
 export interface UITranslations {
+  // ... existing fields
   title: string;
   subtitle: string;
   startBtn: string;
@@ -38,4 +46,17 @@ export interface UITranslations {
   retryBtn: string;
   editNote: string;
   footerText: string;
+  // New fields
+  leadTitle: string;
+  leadSubtitle: string;
+  nameLabel: string;
+  emailLabel: string;
+  downloadBtn: string;
+  skipBtn: string;
+  performanceReport: string;
+  domainAnalysis: string;
+  coachInstruction: string;
+  startTimeLabel: string;
+  endTimeLabel: string;
+  durationLabel: string;
 }
