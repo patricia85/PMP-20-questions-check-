@@ -59,4 +59,5 @@ export interface UITranslations {
   startTimeLabel: string;
   endTimeLabel: string;
   durationLabel: string;
+  licenseText: string;
 }

@@ -33,7 +33,8 @@ export const uiTranslations: Record<'pl' | 'en' | 'ar' | 'de' | 'es', UITranslat
     coachInstruction: "Proszę prześlij ten raport do swojego trenera PMP (trish.kwasniak@gmail.com), aby omówić dalsze kroki.",
     startTimeLabel: "Czas rozpoczęcia",
     endTimeLabel: "Czas zakończenia",
-    durationLabel: "Całkowity czas"
+    durationLabel: "Całkowity czas",
+    licenseText: "Strategy idea for 20 adaptive PMP questions © 2026 by Patricia Kwasniak is licensed under CC BY-NC-ND 4.0"
   },
   en: {
     title: "PMP Exam Quest",
@@ -67,7 +68,8 @@ export const uiTranslations: Record<'pl' | 'en' | 'ar' | 'de' | 'es', UITranslat
     coachInstruction: "Please send this report to your PMP coach next (trish.kwasniak@gmail.com) for advanced steps.",
     startTimeLabel: "Start Time",
     endTimeLabel: "End Time",
-    durationLabel: "Total Duration"
+    durationLabel: "Total Duration",
+    licenseText: "Strategy idea for 20 adaptive PMP questions © 2026 by Patricia Kwasniak is licensed under CC BY-NC-ND 4.0"
   },
   ar: {
     title: "بحث امتحان PMP",
@@ -101,7 +103,8 @@ export const uiTranslations: Record<'pl' | 'en' | 'ar' | 'de' | 'es', UITranslat
     coachInstruction: "يرجى إرسال هذا التقرير إلى مدرب PMP الخاص بك (trish.kwasniak@gmail.com) للخطوات المتقدمة.",
     startTimeLabel: "وقت البدء",
     endTimeLabel: "وقت الانتهاء",
-    durationLabel: "المدة الإجمالية"
+    durationLabel: "المدة الإجمالية",
+    licenseText: "Strategy idea for 20 adaptive PMP questions © 2026 by Patricia Kwasniak is licensed under CC BY-NC-ND 4.0"
   },
   de: {
     title: "PMP Exam Quest",
@@ -135,7 +138,8 @@ export const uiTranslations: Record<'pl' | 'en' | 'ar' | 'de' | 'es', UITranslat
     coachInstruction: "Bitte senden Sie diesen Bericht als Nächstes an Ihren PMP-Coach (trish.kwasniak@gmail.com) für fortgeschrittene Schritte.",
     startTimeLabel: "Startzeit",
     endTimeLabel: "Endzeit",
-    durationLabel: "Gesamtdauer"
+    durationLabel: "Gesamtdauer",
+    licenseText: "Strategy idea for 20 adaptive PMP questions © 2026 by Patricia Kwasniak is licensed under CC BY-NC-ND 4.0"
   },
   es: {
     title: "Búsqueda del Examen PMP",
@@ -156,7 +160,7 @@ export const uiTranslations: Record<'pl' | 'en' | 'ar' | 'de' | 'es', UITranslat
     correctLabel: "Correcto",
     percentageLabel: "Porcentaje",
     retryBtn: "Intentar de Nuevo",
-    editNote: "Puedes editar estas preguntas en src/data/questions.ts",
+    editNote: "Puedes editar estas questions en src/data/questions.ts",
     footerText: "Una buena preparación es la clave del éxito en el examen PMP.",
     leadTitle: "Descarga tu Informe",
     leadSubtitle: "Deja tus datos para recibir un resumen detallado en PDF de tu desempeño.",
@@ -169,6 +173,7 @@ export const uiTranslations: Record<'pl' | 'en' | 'ar' | 'de' | 'es', UITranslat
     coachInstruction: "Por favor, envíe este informe a su entrenador de PMP a continuación (trish.kwasniak@gmail.com) para los pasos avanzados.",
     startTimeLabel: "Hora de inicio",
     endTimeLabel: "Hora de finalización",
-    durationLabel: "Duración total"
+    durationLabel: "Duración total",
+    licenseText: "Strategy idea for 20 adaptive PMP questions © 2026 by Patricia Kwasniak is licensed under CC BY-NC-ND 4.0"
   }
 };

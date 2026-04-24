@@ -137,6 +137,13 @@ export default function App() {
       startY: 90,
       head: [['Category', 'Score', 'Details']],
       body: tableBody,
+      didDrawPage: (data) => {
+        const pageSize = doc.internal.pageSize;
+        const pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
+        doc.setFontSize(9);
+        doc.setTextColor(100);
+        doc.text(t.licenseText, 105, pageHeight - 10, { align: 'center' });
+      }
     });
 
     const finalY = (doc as any).lastAutoTable?.finalY || 150;
@@ -236,6 +243,9 @@ export default function App() {
               <p className="text-xs text-white/40 mt-4 italic">
                 {t.editNote}
               </p>
+              <div className="mt-8 pt-6 border-t border-white/10 text-[11px] text-indigo-200/60 uppercase tracking-[0.2em] font-medium leading-relaxed">
+                {t.licenseText}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -302,6 +312,9 @@ export default function App() {
                 </button>
               </div>
             </form>
+            <div className="mt-8 pt-6 border-t border-white/10 text-[11px] text-indigo-200/50 uppercase tracking-[0.15em] font-medium text-center leading-relaxed">
+              {t.licenseText}
+            </div>
           </motion.div>
         </div>
       ) : !hasStarted ? (
@@ -330,11 +343,15 @@ export default function App() {
 
             <button 
               onClick={startQuiz}
-              className="group w-full bg-indigo-600 text-white py-5 px-8 rounded-3xl font-bold text-lg hover:bg-indigo-500 transition-all shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2"
+              className="group w-full bg-indigo-600 text-white py-5 px-8 rounded-3xl font-bold text-lg hover:bg-indigo-500 transition-all shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 mb-12"
             >
               {t.startBtn}
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
+
+            <div className="text-[11px] text-indigo-200/50 uppercase tracking-[0.15em] font-medium">
+              {t.licenseText}
+            </div>
           </motion.div>
         </div>
       ) : (
@@ -463,6 +480,9 @@ export default function App() {
 
             <div className="mt-8 text-center text-white/30 text-xs font-medium uppercase tracking-widest italic">
               {t.footerText}
+            </div>
+            <div className="mt-4 text-[11px] text-indigo-200/50 uppercase tracking-[0.15em] font-medium max-w-sm mx-auto">
+              {t.licenseText}
             </div>
           </div>
         </div>
