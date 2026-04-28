@@ -26,6 +26,8 @@ export interface QuizState {
   };
   startTime?: number;
   endTime?: number;
+  isAuthenticated: boolean;
+  authPassword?: string;
 }
 
 export interface UITranslations {

@@ -30,7 +30,9 @@ export default function App() {
     score: 0,
     language: 'pl',
     leadCaptured: false,
-    userData: { name: '', email: '' }
+    userData: { name: '', email: '' },
+    isAuthenticated: false,
+    authPassword: ''
   });
 
   const [hasStarted, setHasStarted] = useState(false);
@@ -86,6 +88,16 @@ export default function App() {
     e.preventDefault();
     setIsCapturingLead(false);
     setState(prev => ({ ...prev, isFinished: true, leadCaptured: true }));
+  };
+
+  const handlePasswordSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (state.authPassword === '54321') {
+      setState(prev => ({ ...prev, isAuthenticated: true }));
+    } else {
+      alert('Incorrect Password');
+      setState(prev => ({ ...prev, authPassword: '' }));
+    }
   };
 
   const generatePDF = () => {
@@ -157,15 +169,17 @@ export default function App() {
   };
 
   const restartQuiz = () => {
-    setState({
+    setState(prev => ({
+      ...prev,
       currentQuestionIndex: 0,
       answers: Array(pmpQuestions.length).fill(null),
       isFinished: false,
       score: 0,
-      language: state.language,
       leadCaptured: false,
-      userData: { name: '', email: '' }
-    });
+      userData: { name: '', email: '' },
+      startTime: undefined,
+      endTime: undefined
+    }));
     setHasStarted(false);
     setShowExplanation(false);
     setIsCapturingLead(false);
@@ -195,7 +209,41 @@ export default function App() {
         ))}
       </div>
 
-      {state.isFinished ? (
+      {!state.isAuthenticated ? (
+        <div className="min-h-screen flex items-center justify-center p-6 text-white">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-md w-full glass p-8 md:p-12 text-center"
+          >
+            <div className="mb-8 inline-flex p-4 glass bg-indigo-500/20 border-indigo-400/30 rounded-3xl">
+              <ShieldCheck className="w-12 h-12 text-indigo-400" />
+            </div>
+            <h2 className="text-3xl font-black mb-6 tracking-tight">Access Restricted</h2>
+            <form onSubmit={handlePasswordSubmit} className="space-y-6">
+              <div>
+                <input 
+                  type="password"
+                  value={state.authPassword}
+                  onChange={(e) => setState(prev => ({ ...prev, authPassword: e.target.value }))}
+                  className="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-4 px-6 focus:border-indigo-500 focus:bg-white/10 transition-all outline-none font-bold text-center text-2xl tracking-[0.5em]"
+                  placeholder="•••••"
+                  autoFocus
+                />
+              </div>
+              <button 
+                type="submit"
+                className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-black text-lg hover:bg-indigo-500 transition-all shadow-xl shadow-indigo-600/30"
+              >
+                Unlock
+              </button>
+            </form>
+            <div className="mt-10 pt-6 border-t border-white/10 text-[11px] text-indigo-200/50 uppercase tracking-[0.15em] font-medium leading-relaxed">
+              {t.licenseText}
+            </div>
+          </motion.div>
+        </div>
+      ) : state.isFinished ? (
         <div className="min-h-screen text-white font-sans selection:bg-indigo-500/30 p-4 md:p-8 flex items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
