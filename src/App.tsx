@@ -196,8 +196,13 @@ export default function App() {
     <div dir={state.language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="mesh-bg" />
       
+      {/* Top License Bar */}
+      <div className="fixed top-0 left-0 w-full text-center py-2 bg-indigo-950/40 backdrop-blur-sm border-b border-white/5 z-[60] text-[9px] md:text-[10px] text-indigo-200/50 uppercase tracking-[0.15em] font-medium leading-relaxed px-4">
+        AI adaptive 20 questions pmp study hub strategy idea © 2026 by Patricia Kwasniak is licensed under CC BY-NC-ND 4.0
+      </div>
+
       {/* Floating Language Switcher */}
-      <div className={`fixed top-6 ${state.language === 'ar' ? 'left-6' : 'right-6'} z-50 flex gap-2`}>
+      <div className={`fixed top-12 ${state.language === 'ar' ? 'left-6' : 'right-6'} z-50 flex gap-2`}>
         {(['pl', 'en', 'ar', 'de', 'es'] as const).map((lang) => (
           <button 
             key={lang}
