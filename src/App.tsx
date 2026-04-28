@@ -406,31 +406,31 @@ export default function App() {
         <div className="min-h-screen text-white p-4 md:p-8">
           <div className="max-w-3xl mx-auto">
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                  <span className="text-white font-bold text-xl">P</span>
+                <div className="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                  <span className="text-white font-bold text-lg">P</span>
                 </div>
                 <div>
-                  <h2 className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-0.5">{qContent?.category}</h2>
-                  <div className="text-xl font-bold tracking-tight">
+                  <h2 className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">{qContent?.category}</h2>
+                  <div className="text-lg font-bold tracking-tight">
                     {t.questionOf.replace('{current}', (state.currentQuestionIndex + 1).toString()).replace('{total}', pmpQuestions.length.toString())}
                   </div>
                 </div>
               </div>
-              <div className="h-12 w-12 rounded-full glass border-2 border-white/10 flex items-center justify-center relative">
+              <div className="h-10 w-10 rounded-full glass border-2 border-white/10 flex items-center justify-center relative">
                 <svg className="absolute inset-0 transform -rotate-90">
                   <circle
-                    cx="24"
-                    cy="24"
-                    r="20"
+                    cx="20"
+                    cy="20"
+                    r="17"
                     stroke="currentColor"
                     strokeWidth="3"
                     fill="transparent"
                     className="text-indigo-500"
                     style={{
-                      strokeDasharray: '125.6',
-                      strokeDashoffset: (125.6 * (100 - progress)) / 100,
+                      strokeDasharray: '106.8',
+                      strokeDashoffset: (106.8 * (100 - progress)) / 100,
                       transition: 'stroke-dashoffset 0.5s ease'
                     }}
                   />
@@ -440,22 +440,22 @@ export default function App() {
             </div>
 
             {/* Question Area */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <motion.div 
                 key={`${state.currentQuestionIndex}-${state.language}`}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="glass p-8 md:p-12 relative overflow-hidden"
+                className="glass p-6 md:p-8 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <BookOpen className="w-24 h-24" />
+                  <BookOpen className="w-16 h-16" />
                 </div>
                 
-                <h3 className="text-xl md:text-2xl font-bold leading-relaxed mb-10 text-white relative z-10">
+                <h3 className="text-lg md:text-xl font-bold leading-snug mb-6 text-white relative z-10">
                   {qContent?.question}
                 </h3>
 
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-3">
                   {qContent?.options.map((option, idx) => {
                     const isSelected = state.answers[state.currentQuestionIndex] === idx;
                     const isCorrect = idx === currentQuestion.correctAnswer;
@@ -475,17 +475,17 @@ export default function App() {
                         key={idx}
                         disabled={showResult}
                         onClick={() => handleAnswer(idx)}
-                        className={`w-full text-left p-5 rounded-2xl border-2 transition-all flex items-center justify-between group ${stateClasses}`}
+                        className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between group ${stateClasses}`}
                       >
                         <div className="flex items-center">
-                          <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center transition-colors ${
+                          <div className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center transition-colors ${
                             showResult && isCorrect ? 'border-indigo-400' : 'border-white/20'
                           }`}>
                             {(isSelected || (showResult && isCorrect)) && (
                               <div className={`w-2.5 h-2.5 rounded-full ${showResult && isCorrect ? 'bg-indigo-400' : 'bg-white'}`} />
                             )}
                           </div>
-                          <span className="font-semibold text-lg">{option}</span>
+                          <span className="font-semibold text-base">{option}</span>
                         </div>
                         {showResult && isCorrect && <CheckCircle2 className="w-5 h-5 text-indigo-400 flex-shrink-0" />}
                         {showResult && isSelected && !isCorrect && <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />}
@@ -500,15 +500,15 @@ export default function App() {
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="glass bg-indigo-500/5 p-6 md:p-8 border-indigo-500/20"
+                    className="glass bg-indigo-500/5 p-4 md:p-6 border-indigo-500/20"
                   >
                     <div className="flex gap-4">
                       <div className="bg-indigo-500/20 text-indigo-400 p-2 h-fit rounded-xl border border-indigo-400/20">
-                        <Award className="w-5 h-5" />
+                        <Award className="w-4 h-4" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-indigo-300 mb-2">{t.explanation}</h4>
-                        <p className="text-white/80 leading-relaxed font-medium">
+                        <h4 className="font-bold text-indigo-300 mb-1 text-sm">{t.explanation}</h4>
+                        <p className="text-white/80 leading-relaxed text-sm font-medium">
                           {qContent?.explanation}
                         </p>
                       </div>
@@ -516,7 +516,7 @@ export default function App() {
                     
                     <button 
                       onClick={nextQuestion}
-                      className="mt-6 w-full bg-white text-indigo-900 py-4 px-6 rounded-2xl font-bold hover:bg-indigo-50 transition-all flex items-center justify-center gap-2 group shadow-xl"
+                      className="mt-4 w-full bg-white text-indigo-900 py-3.5 px-6 rounded-2xl font-bold hover:bg-indigo-50 transition-all flex items-center justify-center gap-2 group shadow-xl"
                     >
                       {state.currentQuestionIndex === pmpQuestions.length - 1 ? t.finishBtn : t.nextBtn}
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -526,10 +526,10 @@ export default function App() {
               </AnimatePresence>
             </div>
 
-            <div className="mt-8 text-center text-white/30 text-xs font-medium uppercase tracking-widest italic">
+            <div className="mt-6 text-center text-white/30 text-[10px] font-medium uppercase tracking-widest italic">
               {t.footerText}
             </div>
-            <div className="mt-4 text-[11px] text-indigo-200/50 uppercase tracking-[0.15em] font-medium max-w-sm mx-auto">
+            <div className="mt-2 text-[10px] text-indigo-200/50 uppercase tracking-[0.15em] font-medium max-w-sm mx-auto text-center">
               {t.licenseText}
             </div>
           </div>
